@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --void:   #02000a;
+  --ash:    #0f0500;
+  --deep:   #1a0800;
+  --ember:  #ff4400;
+  --flame:  #ff8800;
+  --gold:   #ffcc00;
+  --lava:   #ff2200;
+  --ice:    #88ccff;
+  --soul:   #cc44ff;
+  --white:  #fff8f0;
+  --ease:   cubic-bezier(0.16,1,0.3,1);
+  --blast:  cubic-bezier(0.77,0,0.175,1);
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+body{
+  background:var(--void);
+  color:var(--white);
+  font-family:'Rajdhani',sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+  -webkit-font-smoothing:antialiased;
+}
+@media(hover:none){body{cursor:auto}#C,#CR{display:none!important}}
+a{text-decoration:none;color:inherit}
+::selection{background:rgba(255,68,0,0.35);color:#fff}
+::-webkit-scrollbar{width:2px}
+::-webkit-scrollbar-track{background:var(--void)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#ff4400,#ff8800);border-radius:2px}
+
+/* ── Overlays ── */
+#grain{position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:0.022;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:256px;animation:grain .3s steps(1) infinite}
+@keyframes grain{
+  0%{background-position:0 0}20%{background-position:-3% -7%}
+  40%{background-position:4% 3%}60%{background-position:-2% 5%}
+  80%{background-position:3% -2%}100%{background-position:0 0}
+}
+
+#vig{position:fixed;inset:0;z-index:8999;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 35%,rgba(2,0,10,0.8) 100%)}
+
+#spb{position:fixed;top:0;left:0;height:2px;z-index:9998;pointer-events:none;width:0%;
+  background:linear-gradient(90deg,#ff2200,#ff8800,#ffcc00);
+  box-shadow:0 0 10px rgba(255,68,0,0.9),0 0 20px rgba(255,136,0,0.5)}
+
+/* ── Custom cursor ── */
+#C{position:fixed;width:8px;height:8px;border-radius:50%;background:#ff4400;
+  pointer-events:none;z-index:99999;transform:translate(-50%,-50%);
+  box-shadow:0 0 12px #ff4400,0 0 24px rgba(255,68,0,0.5)}
+#CR{position:fixed;width:32px;height:32px;border-radius:50%;
+  border:1px solid rgba(255,68,0,0.4);pointer-events:none;z-index:99998;
+  transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),border-color .25s}
+#CR.h{width:58px;height:58px;border-color:rgba(255,68,0,0.8);background:rgba(255,68,0,0.04)}
+
+/* ── Typography ── */
+.fb  {font-family:'Bebas Neue',sans-serif}
+.fc  {font-family:'Cinzel',serif}
+.fm  {font-family:'Share Tech Mono',monospace}
+.fr  {font-family:'Rajdhani',sans-serif}
+
+/* ── Gradient text ── */
+.gfire{background:linear-gradient(135deg,#ffcc00 0%,#ff8800 40%,#ff2200 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.gice {background:linear-gradient(135deg,#ffffff 0%,#c8e8ff 40%,#88ccff 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.gsoul{background:linear-gradient(135deg,#ff88ff 0%,#cc44ff 50%,#6622cc 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.ggold{background:linear-gradient(135deg,#ffffff 0%,#ffcc00 50%,#ff8800 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ── Glow ── */
+.glow-f{text-shadow:0 0 20px rgba(255,68,0,0.9),0 0 60px rgba(255,136,0,0.4)}
+.glow-g{text-shadow:0 0 20px rgba(255,204,0,0.9),0 0 60px rgba(255,136,0,0.4)}
+.glow-i{text-shadow:0 0 20px rgba(136,204,255,0.8),0 0 60px rgba(136,204,255,0.3)}
+
+/* ── Section ── */
+.S{position:relative;overflow:hidden;z-index:10}
+
+/* ── Animations ── */
+@keyframes flicker{
+  0%,100%{opacity:1}8%{opacity:.85}15%{opacity:1}22%{opacity:.9}
+  30%{opacity:1}38%{opacity:.88}45%{opacity:1}
+}
+@keyframes flame-wave{
+  0%,100%{transform:scaleY(1) skewX(0deg)}
+  25%{transform:scaleY(1.08) skewX(-1.5deg)}
+  75%{transform:scaleY(.95) skewX(1deg)}
+}
+@keyframes ember-float{
+  0%{transform:translateY(0) translateX(0) scale(1);opacity:.9}
+  50%{transform:translateY(-60px) translateX(15px) scale(.6);opacity:.5}
+  100%{transform:translateY(-120px) translateX(-10px) scale(.2);opacity:0}
+}
+@keyframes spin-s{to{transform:rotate(360deg)}}
+@keyframes spin-r{to{transform:rotate(-360deg)}}
+@keyframes pulse-f{0%,100%{opacity:.3;box-shadow:0 0 0 0 rgba(255,68,0,0)}50%{opacity:1;box-shadow:0 0 0 6px rgba(255,68,0,0)}}
+@keyframes lava-flow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes shockwave{
+  0%{transform:translate(-50%,-50%) scale(0);opacity:.8}
+  100%{transform:translate(-50%,-50%) scale(4);opacity:0}
+}
+
+/* ── Lava border ── */
+.lava-border{
+  border:1px solid transparent;
+  background:linear-gradient(var(--void),var(--void)) padding-box,
+             linear-gradient(135deg,rgba(255,68,0,.3),rgba(255,136,0,.15),rgba(255,204,0,.2)) border-box;
+}
+
+/* ── Fire text flicker ── */
+.flicker{animation:flicker 4s infinite}
